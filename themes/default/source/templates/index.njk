@@ -1,0 +1,289 @@
+{% extends '_base.njk' %}
+{% block extra_css %}
+  <style>
+    .bg-gradient {
+      background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    }
+    .section-header {
+      position: relative;
+      text-align: center;
+      background: linear-gradient(179deg, rgb(43,58,66) 0%, rgb(0 78 147) 100%);
+      color: white;
+    }
+    .logo {
+      width: 50px;
+      fill: white;
+      padding-right: 15px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .inner-header {
+      height: 65vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .inner-header-flex {
+      /*Flexbox for containers*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: row;
+    }
+    .waves {
+      position: relative;
+      width: 100%;
+      height: 15vh;
+      margin-bottom: -7px; /*Fix for safari gap*/
+      min-height: 100px;
+      max-height: 150px;
+    }
+    .content {
+      position: relative;
+      height: 20vh;
+      text-align: center;
+      background-color: white;
+    }
+    /* Animation */
+    .parallax > use {
+      animation: move-forever 25s cubic-bezier(0.55,0.5,0.45,0.5) infinite;
+    }
+    .parallax > use:nth-child(1) {
+      animation-delay: -2s;
+      animation-duration: 7s;
+    }
+    .parallax > use:nth-child(2) {
+      animation-delay: -3s;
+      animation-duration: 10s;
+    }
+    .parallax > use:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 13s;
+    }
+    .parallax > use:nth-child(4) {
+      animation-delay: -5s;
+      animation-duration: 20s;
+    }
+    @keyframes move-forever {
+      0% {
+        transform: translate3d(-90px, 0, 0);
+      }
+      100% {
+        transform: translate3d(85px, 0, 0);
+      }
+    }
+    /*Shrinking for mobile*/
+    @media(max-width: 768px) {
+      .waves {
+        height: 40px;
+        min-height: 40px;
+      }
+      .content {
+        height: 30vh;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <!-- Hey! This is the original version of Simple CSS Waves -->
+  <section
+    class="section-header">
+    <!--Content before waves-->
+    <div
+      class="pt-8 pb-6 pb-lg-8">
+      <!--Just the logo.. Don't mind this-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <img class="mb-3" width="108" src="/img/icons/siger.svg" alt="">
+            <h1 class="fw-light display-8">{{ server_settings.PROJECT_NAME }}</h1>
+            <div class="display-4 fw-bolder mb-3">{{ server_settings.PROJECT_NAME }}</div>
+          </div>
+          <div class="col-lg-8 offset-lg-2">
+            <div class="fw-light text-white text-opacity-50">
+              Make your life sporty.
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "partials/_waves.njk" %}
+  </section>
+  <!--Header ends-->
+  <!--Section Services-->
+  <section class="section section-services bg-soft py-8">
+    <div class="container">
+      <div class="row">
+        <div class="text-center col-lg-8 offset-lg-2 mb-35">
+          <h2 class="display-6">Our Services</h2>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque distinctio a rerum natus rem aperiam dolore
+            veritatis accusantium. Ut fugit nihil eaque culpa rerum voluptatem incidunt maxime dolorem dolores possimus!</div>
+        </div>
+        <div class="col-lg-4 mb-35">
+          <div class="card bg-transparent shadow-none h-100">
+            <div class="card-body text-center">
+              <img width="100" height="100" src="/img/icons/laptop-idea.png" alt="">
+              <h3 class="h5 fw-bold">Professional Design</h3>
+              <p>Easy to use small business websites that are professionally designed to attract your ideal customers</p>
+              <a href="#" class="btn btn-outline-dark border-2">
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-35">
+          <div class="card bg-transparent shadow-none h-100">
+            <div class="card-body text-center">
+              <img width="100" height="100" src="/img/icons/megaphone-multimedia.png" alt="">
+              <h3 class="h5 fw-bold">Online Marketing</h3>
+              <p>Digital tools and add-ons that are tailored to your goals, helping your small business succeed online</p>
+              <a href="#" class="btn btn-outline-dark border-2">
+                Browse Toolbox
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="card bg-transparent shadow-none h-100">
+            <div class="card-body text-center">
+              <img width="100" height="100" src="/img/icons/tech-support.png" alt="">
+              <h3 class="h5 fw-bold">24/7 Tech Support</h3>
+              <p>Ongoing website updates, security, SEO and tech support whenever you need it, so you're not left on your own</p>
+              <a href="#" class="btn btn-outline-dark border-2">
+                More Supports
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section Review-->
+  <section class="section section-review bg-primary bg-opacity-10">
+    <div class="container-fluid py-8">
+      <div class="row">
+        <div class="text-center col-lg-8 offset-lg-2 mb-35">
+          <h2 class="display-6">What people are saying ...</h2>
+          <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque distinctio a rerum natus rem aperiam dolore
+            veritatis accusantium. Ut fugit nihil eaque culpa rerum voluptatem incidunt maxime dolorem dolores possimus!</div>
+        </div>
+        <div id="customerReviewsSlider" class="splide" aria-labelledby="carousel-heading">
+          <div class="splide__track mb-3">
+            <ul class="splide__list">
+              <li class="splide__slide p-2">
+                <div class="card h-100">
+                  <div class="card-body text-center p-4">
+                    <img class="rounded-circle mb-2" width="46" height="46" src="/img/avatars/avatar.png" alt="avatar">
+                    <div class="star-rating d-flex justify-content-center fs-4 text-special">
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                    </div>
+                    <h4 class="h5 mb-1 me-auto fw-bold">Novita Anggraini</h4>
+                    <div class="small mb-3">Posted on
+                      <a class="fst-underline" href="#">Google</a>
+                    </div>
+                    <div>We couldn’t be happier with the result. Eva has created a very professional looking site for us, its clean, logical
+                      and does all that we hoped it would.</div>
+                  </div>
+                </div>
+              </li>
+              <li class="splide__slide p-2">
+                <div class="card h-100">
+                  <div class="card-body text-center p-4">
+                    <img class="rounded-circle mb-2" width="46" height="46" src="/img/avatars/avatar.png" alt="avatar">
+                    <div class="star-rating d-flex justify-content-center fs-4 text-special">
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                    </div>
+                    <h4 class="h5 mb-1 me-auto fw-bold">Rama Runov Riguntila</h4>
+                    <div class="small mb-3">Posted on
+                      <a class="fst-underline" href="#">Google</a>
+                    </div>
+                    <div>Loved working with Simpellab Developer. Sasri dkk was super easy to work with, was helpful and we had some great
+                      discussions around making the most of our website build.</div>
+                  </div>
+                </div>
+              </li>
+              <li class="splide__slide p-2">
+                <div class="card h-100">
+                  <div class="card-body text-center p-4">
+                    <img class="rounded-circle mb-2" width="46" height="46" src="/img/avatars/avatar.png" alt="avatar">
+                    <div class="star-rating d-flex justify-content-center fs-4 text-special">
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                    </div>
+                    <h4 class="h5 mb-1 me-auto fw-bold">Regina</h4>
+                    <div class="small mb-3">Posted on
+                      <a class="fst-underline" href="#">Google</a>
+                    </div>
+                    <div>Loved working with Simpellab Developer. Sasri dkk was super easy to work with, was helpful and we had some great
+                      discussions around making the most of our website build.</div>
+                  </div>
+                </div>
+              </li>
+              <li class="splide__slide p-2">
+                <div class="card h-100">
+                  <div class="card-body text-center p-4">
+                    <img class="rounded-circle mb-2" width="46" height="46" src="/img/avatars/avatar.png" alt="avatar">
+                    <div class="star-rating d-flex justify-content-center fs-4 text-special">
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                      <i class="mdi mdi-star"></i>
+                    </div>
+                    <h4 class="h5 mb-1 me-auto fw-bold">Jhon Doe</h4>
+                    <div class="small mb-3">Posted on
+                      <a class="fst-underline" href="#">Google</a>
+                    </div>
+                    <div>We couldn’t be happier with the result. Eva has created a very professional looking site for us, its clean, logical
+                      and does all that we hoped it would.</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section Review-->
+  <section class="section section-review py-9">
+    <div class="container">
+      <div class="row">
+        <div class="text-center col-lg-8 offset-lg-2 mb-35">
+          <h2 class="display-6">Open Source Projects</h2>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque distinctio a rerum natus rem aperiam dolore
+            veritatis accusantium. Ut fugit nihil eaque culpa rerum voluptatem incidunt maxime dolorem dolores possimus!
+          </div>
+          <div id="projectSlider" class="splide" aria-labelledby="carousel-heading">
+            <div class="splide__track mb-3">
+              <ul class="splide__list">
+                {% for object in projects %}
+                  <li class="splide__slide p-2">
+                    {% include "partials/_projects_card.njk" %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Content ends-->
+  {% endblock %}

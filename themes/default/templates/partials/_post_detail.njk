@@ -1,0 +1,63 @@
+<article id="post-{{ object.id }}" class="post">
+  <div class="card mb-35">
+    {% if object.thumbnail %}
+      <img class="card-img-top" src="{{ object.thumbnail.url }}" alt="{{ object.title }}">
+    {% endif %}
+    <div class="post-body card-body p-35">
+      <div class="post-content">
+        {{ object.content|safe }}
+      </div>
+    </div>
+    <div class="card-footer border-top d-flex">
+      <div class="d-flex align-items-center flex-fill">
+        {# <i class="mdi mdi-18px mdi-book-multiple-outline me-2"></i> #}
+        <div class="small">
+          {% for tag in object.tags.all %}
+            <a class="d-inline-block px-2 py-1 bg-light border" href="{{ tag.url }}">{{ tag.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="mdi mdi-18px mdi-chat-outline me-2"></i>
+        <span class="d-block">{{ object.view_count }} Comments</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header border-bottom d-flex">
+      <div class="d-flex align-items-center flex-fill">
+        <h5 class="fw-bold mb-0">Chapters</h5>
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="mdi mdi-18px mdi-book-open-outline me-2"></i>
+        <span class="d-block">{{ object.view_count }} Chapters</span>
+      </div>
+    </div>
+    <div class="post-list list-group list-group-flush">
+      <a href="#" class="post-list-item list-group-item d-flex p-3 align-items-center">
+        <img class="me-3" width="160" height="90" src="/img/illustrations/thumbnail.png" alt="Lorem Ipsum Dolor Sit Amet Detail 1">
+        <div>
+          <div class="small">24 Juni 2022</div>
+          <h4 class="h5 mb-1 fw-bolder">Lorem ipsum dolor sit amet consectetur!</h4>
+          <div class="d-none d-lg-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum modi mollitia error reprehenderit labore voluptates numquam.</div>
+        </div>
+      </a>
+      <a href="#" class="post-list-item list-group-item d-flex p-3 align-items-center">
+        <img class="me-3" width="160" height="90" src="/img/illustrations/thumbnail.png" alt="Lorem Ipsum Dolor Sit Amet Detail 1">
+        <div>
+          <div class="small">24 Juni 2022</div>
+          <h4 class="h5 mb-1 fw-bolder">Lorem ipsum dolor sit amet consectetur!</h4>
+          <div class="d-none d-lg-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum modi mollitia error reprehenderit labore voluptates numquam.</div>
+        </div>
+      </a>
+      <a href="#" class="post-list-item list-group-item d-flex p-3 align-items-center">
+        <img class="me-3" width="160" height="90" src="/img/illustrations/thumbnail.png" alt="Lorem Ipsum Dolor Sit Amet Detail 1">
+        <div>
+          <div class="small">24 Juni 2022</div>
+          <h4 class="h5 mb-1 fw-bolder">Lorem ipsum dolor sit amet consectetur!</h4>
+          <div class="d-none d-lg-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum modi mollitia error reprehenderit labore voluptates numquam.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</article>

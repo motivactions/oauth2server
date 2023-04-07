@@ -1,0 +1,36 @@
+{% load i18n %}
+
+
+<div class="card border {% if notice.unread %}bg-light{% endif %} mb-3">
+  <div class="card-body">
+    <h4 class="fs-5 mb-2">
+      {{ notice.actor|title }} 
+      {{ notice.verb }}
+      {% if notice.action_object %}
+        {{ notice.action_object }}
+      {% endif %}
+      {% if notice.target %}
+        on {{ notice.target }}
+      {% endif %}
+    </h4>
+    <p class="mb-2">{{ notice.description|linebreaksbr }}</p>
+    <div class="notice-actions">
+      {% for action in notice.data.actions %}
+        <a class="btn btn-sm btn-outline-{{ notice.level }} me-1" target="_blank" href="{{ action.href }}">{{ action.title }}</a>
+      {% endfor %}
+      {% if notice.unread %}
+        <a class="btn btn-sm btn-outline-secondary me-1" target="_blank" href="{% url 'notifications:mark_as_read' notice.slug %}">
+          {% trans "Mark as Read" %}
+        </a>
+      {% endif %}
+      {% if not notice.deleted %}
+        <a class="btn btn-sm btn-outline-danger me-1" target="_blank" href="{% url 'notifications:delete' notice.slug %}">
+          {% trans "Delete" %}
+        </a>
+      {% endif %}
+      {{ action.href }}
+      <span class="small">{{ notice.timesince }} {% trans "ago" %}</span>
+    </div>
+  </div>
+</div>
+

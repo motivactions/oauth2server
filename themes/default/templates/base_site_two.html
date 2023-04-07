@@ -1,0 +1,18 @@
+{% extends 'base_site.html' %}
+
+{% block bodyclass %}bg-white{% endblock %}
+
+{% block content %}
+  <div class="pt-35 pb-6">
+    <div class="{% block content_container_class %}container{% endblock content_container_class %}">
+      <div class="row">
+        <div class="{% block main_column_class %}{% endblock %}">
+          {% block main_column %}{% endblock %}
+        </div>
+        <div class="pb-6 mb-25 {% block side_column_class %}{% endblock %}">
+          {% block side_column %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends '_base_one_column.njk' %}
+
+{% block bodyclass %}bg-white{% endblock %}
+
+{% block header %}
+  <section class="bg-dark text-white text-center pt-6 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="display-4 mb-3">
+            Our Partners
+          </h1>
+          <div class="">It's all about passions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block main_column_class %}col-lg-10 offset-lg-1{% endblock %}
+
+{% block main_column %}
+  <div class="row">
+    {% for object in pages %}
+      <div class="col-lg-6 mb-35">
+        {% include "partials/_portofolio_card.njk" %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

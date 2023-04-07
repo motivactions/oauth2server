@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% load i18n static %}
+
+{% block main_css %}
+  <link rel="stylesheet" href="{% static 'theme_default/css/main.bundle.css' %}">
+{% endblock main_css %}
+
+{% block extrahead %}
+  {% include 'metatags.html' %}
+  {{ block.super }}
+{% endblock %}
+
+{% block top_js %}
+  <script defer src="{% static 'theme_default/js/plugins/alpine.min.js' %}"></script>
+  <script src="{% static 'theme_default/js/plugins/htmx.min.js' %}"></script>
+{% endblock top_js %}
+
+{% block main_js %}
+  <script src="{% static 'theme_default/js/runtime.bundle.js' %}"></script>
+  <script src="{% static 'theme_default/js/shared.bundle.js' %}"></script>
+  <script src="{% static 'theme_default/js/main.bundle.js' %}"></script>
+{% endblock main_js %}
+
+{% block bodyclass %}{% endblock %}
+
+{% block content_wrapper %}
+  <div id="content-wrapper"
+       class="{% block content_classes %}{% endblock %}"
+       x-data="{% block content_data %}{% endblock %}"
+  >
+    {% block page_header %}{% endblock %}
+    {% block main_wrapper %}
+      <main id="main-wrapper" class="{% block main_wrapper_classes %}{% endblock %}">
+        {% block top_content %}{% endblock %}
+        {% block main_content %}
+          {% block messages_wrapper %}{% endblock %}
+          {% block content %}{% endblock %}
+        {% endblock %}
+        {% block bottom_content %}{% endblock %}
+      </main>
+    {% endblock %}
+    {% block footer %}{% endblock footer %}
+  </div>
+{% endblock %}
+
+{% block tawk_to %}
+  {% include 'includes/tawkto.html' %}
+  {% include 'includes/pushnotification.html' %}
+{% endblock tawk_to %}

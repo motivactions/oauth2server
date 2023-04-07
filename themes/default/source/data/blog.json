@@ -1,0 +1,225 @@
+{
+  "user": {
+    "email": "demo.admin@email.com",
+    "is_authenticated": true
+  },
+  "title": "Blog",
+  "pages": [
+    {
+      "id": 1,
+      "url": "/blog_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "title": "Lorem Ipsum Dolor Sit Amet Detail 1",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "url": "/blog_detail.html",
+      "title": "Assumenda minus quas praesentium corrupti dolorum alias amet molestias",
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/blog_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "title": "Dolorum alias amet molestias",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/blog_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "title": "Quas praesentium corrupti dolorum alias amet molestias",
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/blog_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "title": "Corrupti dolorum alias amet molestias",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/blog_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "title": "Praesentium corrupti dolorum alias amet molestias",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Javascript",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Webpack",
+            "url": "#"
+          },
+          {
+            "name": "Sass",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    }
+  ]
+}

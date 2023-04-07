@@ -1,0 +1,33 @@
+<article id="post-{{ object.id }}" class="post card h-100">
+  {% if object.thumbnail %}
+    <img class="card-img-top" src="{{ object.thumbnail.url }}" alt="{{ object.title }}">
+  {% endif %}
+  <div class="post-body card-body p-35 text-center">
+    <h2 class="post-title h5 fw-bolder">
+      <a href="{{ object.url }}">{{ object.title|title }}</a>
+    </h2>
+    <div class="small mb-2">{{ object.project_owner }}</div>
+    <div class="post-content">
+      <div class="mb-3">{{ object.content|safe|truncate(120) }}</div>
+      <div class="small">
+        {% for tag in object.tags.all %}
+          <a class="d-inline-block px-2 py-1 bg-light border" href="{{ tag.url }}">{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="card-footer border-top d-flex">
+    <div class="d-flex align-items-center flex-fill">
+      {# <i class="mdi mdi-18px mdi-book-multiple-outline me-2"></i> #}
+      <div class="small">
+        {% if object.category %}
+          <a class="d-inline-block px-2 py-1 bg-light border" href="{{ object.category.url }}">{{ object.category.name }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <a class="d-flex align-items-center" href="{{ object.url }}">
+      <i class="mdi mdi-18px mdi-rocket-launch-outline me-2"></i>
+      <span class="d-block">View Project</span>
+    </a>
+  </div>
+</article>

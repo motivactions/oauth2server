@@ -1,0 +1,27 @@
+.post-content {
+  table {
+    @extend .small;
+    @extend .table;
+    @extend .table-sm;
+  }
+  textarea, select,
+  input[type="text"],
+  input[type="file"],
+  input[type="password"],
+  input[type="number"]{
+    @extend .form-control;
+  }
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+  .post-blockquote-text,
+  blockquote {
+    font-size: 1.2rem;
+    border-left: 5px solid var(--bs-gray-600);
+    padding-left: 1.6rem;
+  }
+}

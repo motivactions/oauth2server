@@ -1,0 +1,15 @@
+{% extends '_base.njk' %}
+
+{% block bodyclass %}bg-white{% endblock %}
+
+{% block content %}
+  <div class="pt-35 pb-6">
+    <div class="container">
+      <div class="row">
+        <div class="{% block main_column_class %}{% endblock %}">
+          {% block main_column %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

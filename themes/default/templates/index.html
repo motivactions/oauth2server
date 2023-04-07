@@ -1,0 +1,232 @@
+{% extends './base_site_one.html' %}
+{% load i18n %}
+
+{% block main_css %}
+  {{ block.super }}
+  <style>
+    .fdfsdf {
+      background: url((unknown)) no-repeat rgb(249, 250, 254);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      padding-top: 140px !important;
+    }
+    .asdas {
+      margin: 0px auto;
+      max-width: 80rem;
+      width: 100%;
+    }
+    .jnVTKV {
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      justify-content: center;
+      margin: auto;
+      max-width: 864px;
+      position: relative;
+      text-align: center;
+      z-index: 500;
+      padding-top: 0px !important;
+    }
+    .cv {
+      left: -500px;
+    }
+    .oca {
+      bottom: -420px;
+      right: -500px;
+    }
+    .qna {
+      right: -500px;
+      top: -220px;
+    }
+    .cv, .qna, .oca {
+      pointer-events: none;
+      position: absolute;
+      user-select: none;
+      z-index: 1;
+    }
+  </style>
+{% endblock main_css %}
+
+{% comment %} 
+{% block page_title %}
+<div class="mb-3">
+  <div class="display-5">{% trans "Welcome to the" %}</div>
+  <h1 class="display-5 fw-bold">{{ title }}</h1>
+</div>
+{% endblock page_title %}
+
+{% block page_summary %}
+  <div class="mb-35">{{ tagline }}</div>
+  {% trans "Explore our communities ..." as placeholder %}
+  {% search_form placeholder=placeholder %}
+{% endblock page_summary %}
+{% endcomment %}
+
+{% block page_header %}
+
+<section class="fdfsdf">
+  <section class="asdas mb-4">
+    <div class="jnVTKV">
+      <img class="cv" alt="hero banner pic 1" src="https://www.digitalocean.com/_next/static/media/cv.72a6526d.svg">
+      <img class="oca" alt="hero banner pic 1" src="https://www.digitalocean.com/_next/static/media/oca.5394d9f6.svg">
+      <img class="qna" alt="hero banner pic 1" src="https://www.digitalocean.com/_next/static/media/qna.b0c5561c.svg">
+      <section class="container mb-6">
+        <div class="mb-5">
+          <h1 class="display-4 fw-bolder text-dark">
+            Welcome to the<br>Authentics Account!
+          </h1>
+          <p class="fs-5">
+            Our communities offers thousands of<br>tutorials, videos,
+            and answers to questions on a wide<br>range of topics. Unsure where
+            to start?
+          </p>
+        </div>
+        <div class="bg-primary text-white mb-6 p-35 rounded shadow-sm">
+          <p class="m-0">On this page we’ve laid out a few easy ways for you to jump in. 👇</p>
+        </div>
+      </section>
+    </div>
+  </section>
+  <section class="container mb-6">
+    <div style="
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    max-width: 80rem;
+    width: 100%;
+">
+      <div style="
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1312px;
+    z-index: 500;
+">
+        <h3 class="display-7 text-dark fw-bolder mb-4">Dive into the Basics</h3>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card bg-soft shadow-sm">
+              <div class="card-body p-md-4">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-9">
+                    <h3 class="fs-4 fw-bold text-dark">Introduction to Single Sign On</h3>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, quis nobis dolore cum quia repellat temporibus nisi, maiores ipsum molestiae nesciunt ab eligendi cupiditate aliquam tempora illo deserunt maxime eos!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card bg-soft shadow-sm">
+              <div class="card-body p-md-4">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-9">
+                    <h3 class="fs-4 fw-bold text-dark">Introduction to Authentics</h3>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, quis nobis dolore cum quia repellat temporibus nisi, maiores ipsum molestiae nesciunt ab eligendi cupiditate aliquam tempora illo deserunt maxime eos!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+{% comment %}
+TODO add slider homepage
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-md-3">
+        <article id="post-1" class="post card h-100 shadow-sm">
+            <img class="ms-25 mt-25 position-absolute rounded-circle w-25" src="/media/1666191510993.jfif.150x150_q85_crop.jpg" alt="Cipete Gas Badminton">
+            <img class="card-img-top" src="/media/wallpaperflare.com_wallpaper_2.jpg.696x392_q85_crop.jpg" alt="Cipete Gas Badminton">        
+          <div class="post-body card-body p-3">
+            <h2 class="post-title text-center mb-2 h6 fw-bolder">
+              <a href="#" title="Cipete Gas Badminton">Cipete Gas Badminton</a>
+            </h2>
+            <small><div class="small text-center mb-2">Cipete Selatan, Jakarta Selatan</div></small>
+            <div class="mb-3 small text-center">
+                <a class="d-inline-block badge bg-soft text-dark" href="">Bulu Tangkis</a>
+                <a class="d-inline-block badge bg-soft text-dark" href="">Badminton</a>
+            </div>
+            <a class="align-items-center btn btn-outline-primary btn-sm d-flex justify-content-center rounded-pill" href="">
+              <span class="d-block">Join Club</span>
+            </a>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-md-3">
+        <article id="post-1" class="post card h-100 shadow-sm">
+            <img class="ms-25 mt-25 position-absolute rounded-circle w-25" src="/media/1666191510993.jfif.150x150_q85_crop.jpg" alt="Cipete Gas Badminton">
+            <img class="card-img-top" src="/media/wallpaperflare.com_wallpaper_2.jpg.696x392_q85_crop.jpg" alt="Cipete Gas Badminton">        
+          <div class="post-body card-body p-3">
+            <h2 class="post-title text-center mb-2 h6 fw-bolder">
+              <a href="#" title="Cipete Gas Badminton">Cipete Gas Badminton</a>
+            </h2>
+            <small><div class="small text-center mb-2">Cipete Selatan, Jakarta Selatan</div></small>
+            <div class="mb-3 small text-center">
+                <a class="d-inline-block badge bg-soft text-dark" href="">Bulu Tangkis</a>
+                <a class="d-inline-block badge bg-soft text-dark" href="">Badminton</a>
+            </div>
+            <a class="align-items-center btn btn-outline-primary btn-sm d-flex justify-content-center rounded-pill" href="">
+              <span class="d-block">Join Club</span>
+            </a>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-md-3">
+        <article id="post-1" class="post card h-100 shadow-sm">
+            <img class="ms-25 mt-25 position-absolute rounded-circle w-25" src="/media/1666191510993.jfif.150x150_q85_crop.jpg" alt="Cipete Gas Badminton">
+            <img class="card-img-top" src="/media/wallpaperflare.com_wallpaper_2.jpg.696x392_q85_crop.jpg" alt="Cipete Gas Badminton">        
+          <div class="post-body card-body p-3">
+            <h2 class="post-title text-center mb-2 h6 fw-bolder">
+              <a href="#" title="Cipete Gas Badminton">Cipete Gas Badminton</a>
+            </h2>
+            <small><div class="small text-center mb-2">Cipete Selatan, Jakarta Selatan</div></small>
+            <div class="mb-3 small text-center">
+                <a class="d-inline-block badge bg-soft text-dark" href="">Bulu Tangkis</a>
+                <a class="d-inline-block badge bg-soft text-dark" href="">Badminton</a>
+            </div>
+            <a class="align-items-center btn btn-outline-primary btn-sm d-flex justify-content-center rounded-pill" href="">
+              <span class="d-block">Join Club</span>
+            </a>
+          </div>
+        </article>
+      </div>
+      <div class="col-6 col-md-3">
+        <article id="post-1" class="post card h-100 shadow-sm">
+            <img class="ms-25 mt-25 position-absolute rounded-circle w-25" src="/media/1666191510993.jfif.150x150_q85_crop.jpg" alt="Cipete Gas Badminton">
+            <img class="card-img-top" src="/media/wallpaperflare.com_wallpaper_2.jpg.696x392_q85_crop.jpg" alt="Cipete Gas Badminton">        
+          <div class="post-body card-body p-3">
+            <h2 class="post-title text-center mb-2 h6 fw-bolder">
+              <a href="#" title="Cipete Gas Badminton">Cipete Gas Badminton</a>
+            </h2>
+            <small><div class="small text-center mb-2">Cipete Selatan, Jakarta Selatan</div></small>
+            <div class="mb-3 small text-center">
+                <a class="d-inline-block badge bg-soft text-dark" href="">Bulu Tangkis</a>
+                <a class="d-inline-block badge bg-soft text-dark" href="">Badminton</a>
+            </div>
+            <a class="align-items-center btn btn-outline-primary btn-sm d-flex justify-content-center rounded-pill" href="">
+              <span class="d-block">Join Club</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endcomment %}
+{% endblock page_header %}

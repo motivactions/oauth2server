@@ -1,0 +1,44 @@
+<div id="navbar-wrapper" class="{% if navbar_classes %}{{ navbar_classes }}{% else %}navbar-light bg-white{% endif %}">
+  <nav class="navbar navbar-expand-lg px-2 py-3" style="min-height: 80px;">
+    <div class="container align-items-center">
+      <a href="/" class="align-items-center ff-exo fs-4 fw-bold me-3 text-dark text-decoration-none">
+        <img src="{% static 'img/logo/logo.svg' %}" style="height: 36px;">
+      </a>
+      <div class="d-flex d-lg-none py-1 my-1">
+        <a
+          class="btn-icon btn-icon-46px hover-light rounded-circle link-secondary"
+          type="button"
+          data-bs-toggle="collapse"
+          aria-controls="topNavigation"
+          aria-expanded="false"
+          aria-label="Toggle Navigation"
+          href="#topNavigation">
+          <i class="mdi mdi-24px mdi-menu"></i>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse mt-2 mt-lg-0" id="topNavigation">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a href="/" class="nav-link fw-bold px-3">Home</a></li>
+          <li class="nav-item"><a href="/projects.html" class="nav-link fw-bold px-3">Projects</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link fw-bold px-3 dropdown-toggle" data-bs-toggle="dropdown">Experiences</a>
+            <ul class="dropdown-menu fade-up">
+              <li><a class="dropdown-item" href="/blog.html">Learning Path</a></li>
+              <li><a class="dropdown-item" href="/courses.html">Course Completions</a></li>
+              <li><a class="dropdown-item" href="/blog.html">Professional Certificates</a></li>
+              <li><a class="dropdown-item" href="/blog.html">Work Experiences</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/blog.html" class="nav-link fw-bold px-3">Articles</a></li>
+          <li class="nav-item"><a href="/contact.html" class="nav-link fw-bold px-3">Get in Touch</a></li>
+        </ul>
+        <div class="d-none d-lg-flex">
+          <div class="d-none d-lg-block">
+            <a href="/account/login/" class="link-light me-3 ms-2">Sign In</a>
+            <a href="/account/signup/" class="btn btn-primary">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

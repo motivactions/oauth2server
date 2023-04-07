@@ -1,0 +1,20 @@
+{% load widget_tweaks %}
+
+<div class="mb-3">
+  {% render_field field id=field.label class='form-control ' %}
+  {% if field.help_text %}
+      <small id="{{field.label}}_help" class="form-text text-muted">{{ field.help_text }}</small>
+  {% endif %}
+  {% if field.errors %}
+    <div class="field-error small text-danger">{{ field.errors }}</div>
+  {% endif %}
+</div>
+
+<script>
+  if(document.getElementById("{{field.label}}_help") != undefined){
+    document.getElementById("{{field.label}}_help").textContent += ` ${document.getElementById("{{field.label}}").value} ${document.getElementById("{{field.label}}").getAttribute('data-unit')}`
+    document.getElementById("{{field.label}}").addEventListener('keyup', function(){
+      document.getElementById("{{field.label}}_help").innerHTML = `{{ field.help_text }} ${document.getElementById("{{field.label}}").value} ${document.getElementById("{{field.label}}").getAttribute('data-unit')}`
+    })
+  }
+</script>

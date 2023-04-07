@@ -1,0 +1,27 @@
+{% extends 'account/base_profile.html' %}
+{% load i18n static theme_default_tags %}
+
+{% block main_css %}
+  {{ block.super }}
+{% endblock main_css %}
+
+{% block auth_container_class %}py-4{% endblock auth_container_class %}
+
+{% block breadcrumb_items %}
+  {% comment %} #TODO base url needed {% endcomment %}
+  <li class="breadcrumb-item"><a href="/">{% trans "Home" %}</a></li>
+{% endblock breadcrumb_items %}
+
+{% block page_title %}
+<h1 class="display-4 font-baskerville">{% trans "Welcome" %} {{ request.user }}</h1>
+{% endblock page_title %}
+
+{% block page_summary %}{% endblock page_summary %}
+
+{% block content %}
+<div class="row">
+  <div class="col">
+    This is your dashboard!
+  </div>
+</div>
+{% endblock content %}

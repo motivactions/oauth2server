@@ -1,0 +1,40 @@
+{% extends 'account/base_profile.html' %}
+{% load i18n static theme_default_tags %}
+
+{% block main_css %}
+  {{ block.super }}
+{% endblock main_css %}
+
+{% block auth_container_class %}py-4{% endblock auth_container_class %}
+
+{% block breadcrumb_items %}
+  {% comment %} #TODO base url needed {% endcomment %}
+  <li class="breadcrumb-item"><a href="/">{% trans "Home" %}</a></li>
+  <li class="breadcrumb-item" aria-current="page"><a href="{% url 'account_profile' %}">{% trans "Profile" %}</a></li>
+{% endblock breadcrumb_items %}
+
+{% block page_title %}
+<h1 class="display-4 font-baskerville">{% trans "Profile" %}</h1>
+{% endblock page_title %}
+
+{% block page_summary %}{% endblock page_summary %}
+
+{% block body_container %}
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Personal Information</h3>
+      <p class="small">
+        Not shown publicly by default. Used for completion documents and how we greet you in emails and on the platform.
+      </p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% include 'account/snippets/form_error_list.html' with errors=form.non_field_errors %}
+        {% include 'account/snippets/form_group.html' with field=form.first_name size='lg' %}
+        {% include 'account/snippets/form_group.html' with field=form.last_name size='lg' %}
+        {% include 'account/snippets/form_group.html' with field=form.phone size='lg' %}
+        <button class="btn btn-primary" type="submit">{% trans "Update My Profile" %}</button>
+      </form>
+    </div>
+  </div>
+  
+{% endblock body_container %}

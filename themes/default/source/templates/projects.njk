@@ -1,0 +1,44 @@
+{% extends '_base_two_column.njk' %}
+
+{% block bodyclass %}bg-white{% endblock %}
+
+{% block header %}
+  <section class="bg-dark text-white pt-6 pb-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <h1 class="display-4">{{ title }}</h1>
+          <div class="">The more that you read, the more things you will know. The more that you learn, the more places you’ll go.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block main_column_class %}col-lg-8{% endblock %}
+{% block side_column_class %}col-lg-4 mt-lg-n9{% endblock %}
+
+{% block main_column %}
+  {# <div class="card mb-35">
+    <div class="card-body">
+      Headlines
+    </div>
+  </div> #}
+  <div class="row">
+    {% for object in pages %}
+      <div class="col-lg-6 mb-35">
+        {% include "partials/_projects_card.njk" %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="pagination-wrapper">
+    {% include "includes/_pagination.njk" %}
+  </div>
+{% endblock %}
+
+{% block side_column %}
+  <div class="position-sticky" style="top: 1.5rem">
+    {% include "widgets/_form_project_callout.njk" %}
+    {% include "widgets/_tag_badges.njk" %}
+  </div>
+{% endblock %}

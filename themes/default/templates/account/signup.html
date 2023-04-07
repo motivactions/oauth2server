@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-9 mx-auto">
+    <div class="mb-5">
+      <h1 class="display-7 text-center">{% trans "Sign Up" %}</h1>
+      <p class="text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    </div>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {% include 'account/snippets/form_error_list.html' with errors=form.non_field_errors %}
+    
+      <div class="row">
+        {% for field in form %}
+          <div class="col-md-4">
+            {% include 'account/snippets/form_group.html' with field=field size='lg' %}
+          </div>
+        {% endfor %}
+      </div>
+    
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+    
+      <div class="row">
+        <div class="col-md-6">
+          <a class="btn btn-secondary mb-2 mb-md-0 w-100" href="{{ login_url }}">{% trans "I have an Account" %}</a>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-primary px-6 w-100" type="submit">{% trans "Sign Up Now!" %} &raquo;</button>
+        </div>
+      </div>
+    
+    </form>
+  </div>
+</div>
+
+{% endblock %}

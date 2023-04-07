@@ -1,0 +1,52 @@
+{% load static i18n %}
+
+<div id="navbar-wrapper" class="{% if navbar_classes %}{{ navbar_classes }}{% else %}navbar-light bg-white shadow-sm{% endif %}">
+  <nav class="navbar navbar-expand-lg px-2 py-3" style="min-height: 80px;">
+    <div class="container align-items-center">
+      <a href="/" class="align-items-center ff-exo fs-4 fw-bold me-3 text-dark text-decoration-none">
+        <img src="{% static 'theme_default/img/logo/logo.svg' %}" style="height: 36px;">
+      </a>
+      <div class="d-flex d-lg-none py-1 my-1">
+        <a
+          class="btn-icon btn-icon-46px hover-light rounded-circle link-secondary"
+          type="button"
+          data-bs-toggle="collapse"
+          aria-controls="topNavigation"
+          aria-expanded="false"
+          aria-label="Toggle Navigation"
+          href="#topNavigation">
+          <i class="mdi mdi-24px mdi-menu"></i>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse mt-2 mt-lg-0" id="topNavigation">
+
+        <div class="ms-auto">
+          {% block navbar_account %}
+            <div class="d-none d-lg-flex align-items-center">
+            {% include "./language.html" %}
+            {% if user.is_authenticated %}
+              <ul class="navbar-nav ms-3">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="img-fluid rounded-circle" width="40" height="40"  src="{{ user.get_gravatar_url }}" alt="avatar">
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li class="dropdown-item"><a href="{% url 'account_profile' %}">{% trans "Profile" %}</a></li>
+                    {% comment %} <li class="dropdown-item"><a href="{% url 'notifications:all' %}">{% trans "Notifications" %}</a></li> {% endcomment %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li class="dropdown-item"><a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
+                    <li class="dropdown-item"><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+                  </ul>
+                </li>
+              </ul>
+            {% else %}
+              <a href="{% url 'account_login' %}" class="btn me-2 ms-3">{% trans "Sign In" %}</a>
+              <a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans "Get Started" %}</a>
+            {% endif %}
+            </div>
+          {% endblock  %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

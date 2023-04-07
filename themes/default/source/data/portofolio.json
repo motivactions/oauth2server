@@ -1,0 +1,129 @@
+{
+  "user": {
+    "email": "demo.admin@email.com",
+    "is_authenticated": true
+  },
+  "title": "Portofolio",
+  "pages": [
+    {
+      "id": 1,
+      "url": "/portofolio_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "project_date_start": "21 Juni 2022",
+      "project_date_end": "21 Juni 2022",
+      "project_owner": "Balai Riset & Standardisasi Industri Bandar Lampung",
+      "project_url": "https://www.baristandlab.com",
+      "title": "Baristandlab",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Application",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Information System",
+            "url": "#"
+          },
+          {
+            "name": "Laboratorium",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/portofolio_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "project_date_start": "21 Juni 2022",
+      "project_date_end": "21 Juni 2022",
+      "project_owner": "Simpellab",
+      "project_url": "https://www.baristandlab.com",
+      "title": "Simpel Pages",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Application",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Open Source",
+            "url": "#"
+          },
+          {
+            "name": "Content Management System",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    },
+    {
+      "id": 1,
+      "url": "/portofolio_detail.html",
+      "created_at": "20 Juni 2022",
+      "published_at": "21 Juni 2022",
+      "project_date_start": "21 Juni 2022",
+      "project_date_end": "21 Juni 2022",
+      "project_owner": "Simpellab",
+      "project_url": "https://www.baristandlab.com",
+      "title": "Simpel Settings",
+      "thumbnail": {
+        "url": "/img/illustrations/thumbnail.png"
+      },
+      "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus quas praesentium corrupti dolorum alias amet molestias quasi quae laboriosam quibusdam, ullam inventore officiis in harum sequi dignissimos rerum voluptatibus!",
+      "owner": {
+        "username": "demouser",
+        "email": "demo.user@email.com",
+        "get_full_name": "Jhon Doe",
+        "avatar": "/img/avatars/avatar.png"
+      },
+      "category": {
+        "name": "Django Package",
+        "url": "#"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Open Source",
+            "url": "#"
+          },
+          {
+            "name": "Setting Module",
+            "url": "#"
+          }
+        ]
+      },
+      "view_count": 120,
+      "clap_count": 30,
+      "comment_count": 30
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<ul class="navbar-nav me-auto">
+  {% if menu_items %}
+    {% for item in menu_items %}
+      <li class="nav-item {% if not item.is_leaf_node %}dropdown{% endif %}">
+        <a href="{{ item.url }}" 
+            {% if item.is_leaf_node %}
+              class="nav-link fw-bold px-3"
+            {% else %}
+              class="nav-link fw-bold px-3 dropdown-toggle" data-bs-toggle="dropdown"
+            {% endif %}
+          >{{ item.label }}</a>
+        {% if not item.is_leaf_node %}
+          <ul class="dropdown-menu fade-up">
+            {% for child in item.get_children %}
+              <li><a class="dropdown-item" href="{{ child.url }}">{{ child.label }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+    {% endfor %}
+  {% endif %}
+</ul>

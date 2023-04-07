@@ -1,0 +1,13 @@
+{% extends "_layout.njk" %}
+
+{% block main_css %}
+  {% for css_file in htmlWebpackPlugin.files.css %}
+    <link rel="stylesheet" href="{{ css_file }}">
+  {% endfor %}
+{% endblock %}
+
+{% block main_js %}
+  {% for js_file in htmlWebpackPlugin.files.js %}
+    <script src="{{ js_file }}"></script>  
+  {% endfor %}
+{% endblock %}
