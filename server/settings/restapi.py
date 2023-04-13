@@ -58,6 +58,8 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": [
@@ -68,6 +70,34 @@ REST_FRAMEWORK = {
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
 }
+
+##############################################################################
+# DJOSER
+##############################################################################
+
+DJOSER = {
+    "SERIALIZERS": {
+        "activation": "djoser.serializers.ActivationSerializer",
+        "password_reset": "djoser.serializers.SendEmailResetSerializer",
+        "password_reset_confirm": "djoser.serializers.PasswordResetConfirmSerializer",
+        "password_reset_confirm_retype": "djoser.serializers.PasswordResetConfirmRetypeSerializer",
+        "set_password": "djoser.serializers.SetPasswordSerializer",
+        "set_password_retype": "djoser.serializers.SetPasswordRetypeSerializer",
+        "set_username": "djoser.serializers.SetUsernameSerializer",
+        "set_username_retype": "djoser.serializers.SetUsernameRetypeSerializer",
+        "username_reset": "djoser.serializers.SendEmailResetSerializer",
+        "username_reset_confirm": "djoser.serializers.UsernameResetConfirmSerializer",
+        "username_reset_confirm_retype": "djoser.serializers.UsernameResetConfirmRetypeSerializer",
+        "user_create": "auths.api.v1.serializers.UserCreateSerializer",
+        "user_create_password_retype": "djoser.serializers.UserCreatePasswordRetypeSerializer",
+        "user_delete": "djoser.serializers.UserDeleteSerializer",
+        "user": "auths.api.v1.serializers.UserSerializer",
+        "current_user": "auths.api.v1.serializers.UserSerializer",
+        "token": "djoser.serializers.TokenSerializer",
+        "token_create": "djoser.serializers.TokenCreateSerializer",
+    }
+}
+
 
 ##############################################################################
 # DOCUMENTATIONS

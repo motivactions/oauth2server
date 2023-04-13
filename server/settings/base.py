@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "corsheaders",
     # other deps
+    "mptt",
     "widget_tweaks",
     "easy_thumbnails",
     "import_export",

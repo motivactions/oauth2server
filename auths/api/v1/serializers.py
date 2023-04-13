@@ -2,8 +2,25 @@ from typing import Optional
 
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
-from djoser.serializers import UserSerializer as BaseUserSerializer
+from djoser.serializers import (
+    UserSerializer as BaseUserSerializer,
+    UserCreateSerializer as BaseUserCreateSerializer,
+)
 from rest_framework import serializers
+from taggit.serializers import TagListSerializerField, TaggitSerializer
+from ...models import Tag, Category, Referral, ReferralCode
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
+class TagSerializer(serializers.Serializer):
+    class Meta:
+        model = Tag
+        fields = "__all__"
 
 
 class ContentTypeSerializer(serializers.ModelSerializer):
@@ -29,24 +46,35 @@ class PermissionSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class UserSerializer(BaseUserSerializer):
+class UserCreateSerializer(TaggitSerializer, BaseUserCreateSerializer):
+    tags = TagListSerializerField()
 
-    is_partner = serializers.SerializerMethodField(required=False)
-    partner_id = serializers.SerializerMethodField(required=False)
+    class Meta(BaseUserCreateSerializer.Meta):
+        fields = list(BaseUserCreateSerializer.Meta.fields) + ["tags"]
+
+
+class UserSerializer(TaggitSerializer, BaseUserSerializer):
+    tags = TagListSerializerField()
     groups = GroupSerializer(many=True)
     user_permissions = PermissionSerializer(many=True)
 
     class Meta(BaseUserSerializer.Meta):
         fields = list(BaseUserSerializer.Meta.fields) + [
-            "is_partner",
-            "partner_id",
+            "tags",
             "user_permissions",
             "groups",
         ]
 
-    def get_partner_id(self, obj) -> Optional[int]:
-        partner = obj.get_partner()
-        return None if not partner else partner.id
 
-    def get_is_partner(self, obj) -> bool:
-        return obj.is_partner
+class ReferralCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReferralCode
+        fields = "__all__"
+
+
+class ReferralSerializer(serializers.ModelSerializer):
+    referral_codes = ReferralCodeSerializer(many=True)
+
+    class Meta:
+        model = Referral
+        fields = "__all__"

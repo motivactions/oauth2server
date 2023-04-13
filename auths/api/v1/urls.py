@@ -1,14 +1,20 @@
-from django.urls import path, include
-from djoser.views import UserViewSet
 from rest_framework.routers import DefaultRouter
-from oauth2_provider import urls as oauth_urls
-from .viewsets import ContentTypeViewSet, GroupViewSet, PermissionViewSet
+from .viewsets import (
+    ContentTypeViewSet,
+    GroupViewSet,
+    PermissionViewSet,
+    UserViewSet,
+    CategoryViewSet,
+    TagViewSet,
+)
 
 router = DefaultRouter()
-router.register("user", UserViewSet, "user")
-router.register("group", GroupViewSet, "group")
-router.register("contenttype", ContentTypeViewSet, "contenttype")
-router.register("permission", PermissionViewSet, "permission")
+router.register("users", UserViewSet, "user")
+router.register("groups", GroupViewSet, "group")
+router.register("contenttypes", ContentTypeViewSet, "contenttype")
+router.register("permissions", PermissionViewSet, "permission")
+router.register("categories", CategoryViewSet, "category")
+router.register("tags", TagViewSet, "tag")
 
 urlpatterns = []
 
