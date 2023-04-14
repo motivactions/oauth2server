@@ -8,7 +8,7 @@ from djoser.serializers import (
 )
 from rest_framework import serializers
 from taggit.serializers import TagListSerializerField, TaggitSerializer
-from ...models import Tag, Category, Referral, ReferralCode
+from ...models import User, Tag, Category, Referral, ReferralCode
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -47,19 +47,25 @@ class PermissionSerializer(serializers.ModelSerializer):
 
 
 class UserCreateSerializer(TaggitSerializer, BaseUserCreateSerializer):
-    tags = TagListSerializerField()
+    tags = TagListSerializerField(required=False)
 
     class Meta(BaseUserCreateSerializer.Meta):
-        fields = list(BaseUserCreateSerializer.Meta.fields) + ["tags"]
+        fields = list(BaseUserCreateSerializer.Meta.fields) + [
+            "first_name",
+            "last_name",
+            "tags",
+        ]
 
 
 class UserSerializer(TaggitSerializer, BaseUserSerializer):
-    tags = TagListSerializerField()
+    tags = TagListSerializerField(required=False)
     groups = GroupSerializer(many=True, read_only=True)
     user_permissions = PermissionSerializer(many=True, read_only=True)
 
     class Meta(BaseUserSerializer.Meta):
         fields = list(BaseUserSerializer.Meta.fields) + [
+            "first_name",
+            "last_name",
             "avatar",
             "cover",
             "tags",
@@ -67,6 +73,22 @@ class UserSerializer(TaggitSerializer, BaseUserSerializer):
             "groups",
         ]
         read_only_fields = ["id", "permissions", "groups"]
+
+
+class AvatarSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(required=True)
+
+    class Meta:
+        model = User
+        fields = ["avatar"]
+
+
+class CoverSerializer(serializers.ModelSerializer):
+    cover = serializers.ImageField(required=True)
+
+    class Meta:
+        model = User
+        fields = ["cover"]
 
 
 class ReferralCodeCreateSerializer(serializers.ModelSerializer):

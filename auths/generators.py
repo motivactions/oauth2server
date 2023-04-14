@@ -4,7 +4,6 @@ import json
 from django.conf import settings
 from datetime import datetime, timedelta
 from oauth2_provider.models import get_application_model
-from oauth2_provider.models import AccessToken, RefreshToken
 from oauth2_provider.settings import oauth2_settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -87,6 +86,7 @@ def access_token_generator(request, refresh_token=False):
         "token": "access_token",
         "token_type": "Bearer",
         "identity": {
+            "username": request.user.username,
             "email": request.user.email,
             "first_name": request.user.first_name,
             "last_name": request.user.last_name,
@@ -108,9 +108,10 @@ def refresh_token_generator(request):
     payload = {
         "sub": request.user.pk,
         "scope": "read write",
-        "token": "access_token",
+        "token": "refresh_token",
         "token_type": "Bearer",
         "identity": {
+            "username": request.user.username,
             "email": request.user.email,
             "first_name": request.user.first_name,
             "last_name": request.user.last_name,

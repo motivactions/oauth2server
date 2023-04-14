@@ -8,6 +8,7 @@ from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 from djoser.views import UserViewSet as BaseUserViewset
 from rest_framework import status
 from . import serializers
@@ -62,6 +63,10 @@ class UserViewSet(BaseUserViewset):
             return serializers.ReferralCodeSerializer
         elif self.action == "refferal_codes" and self.request.method == "POST":
             return serializers.ReferralCodeCreateSerializer
+        elif self.action == "upload_avatar":
+            return serializers.AvatarSerializer
+        elif self.action == "upload_cover":
+            return serializers.CoverSerializer
         return super().get_serializer_class()
 
     def _get_referrer(self, request):
@@ -114,3 +119,25 @@ class UserViewSet(BaseUserViewset):
         return Response(
             {"message": f"{referral_code} deleted!"}, status=status.HTTP_200_OK
         )
+
+    @action(methods=["POST"], url_path="upload-avatar", detail=False)
+    def upload_avatar(self, request, *args, **kwargs):
+        print(request.data)
+        instance = request.user
+        serializer = self.get_serializer(
+            instance=instance, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=["POST"], url_path="upload-cover", detail=False)
+    def upload_cover(self, request, *args, **kwargs):
+        instance = request.user
+        print(request.data)
+        serializer = self.get_serializer(
+            instance=instance, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
