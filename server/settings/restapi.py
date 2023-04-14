@@ -54,6 +54,7 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
+    "EXCEPTION_HANDLER": "server.api.helpers.error_handler",
     "DEFAULT_SCHEMA_CLASS": "server.api.schemas.CustomAutoSchema",
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",

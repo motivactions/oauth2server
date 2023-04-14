@@ -68,13 +68,6 @@ class Category(MPTTModel):
         upload_to="icon_images",
         verbose_name=_("image"),
     )
-    category_id = models.CharField(
-        max_length=80,
-        unique=True,
-        verbose_name=_("Category ID"),
-        null=True,
-        blank=True,
-    )
 
     class Meta:
         ordering = ["name"]
@@ -336,10 +329,10 @@ class ReferralCode(models.Model):
         verbose_name_plural = _("Referral Codes")
 
     def __str__(self) -> str:
-        return f"{self.user} - {self.code}"
+        return f"{self.referral} - {self.code}"
 
     def clean(self):
-        count = self.user.referral_codes.count()
+        count = self.referral.referral_codes.count()
         if self._state.adding and count >= self.max_num:
             raise ValidationError({"code": _("Max referral code reached!")})
         return super().clean()
@@ -347,7 +340,7 @@ class ReferralCode(models.Model):
     @classmethod
     def get_user_from_code(cls, code):
         code = cls.objects.filter(code=code).first()
-        return None if code is None else code.user
+        return None if code is None else code.referral.user
 
     def save(self, *args, **kwargs):
         self.clean()

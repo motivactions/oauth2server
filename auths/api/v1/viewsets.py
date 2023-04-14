@@ -9,7 +9,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from djoser.views import UserViewSet as BaseUserViewset
-from django.shortcuts import get_object_or_404
+from rest_framework import status
 from . import serializers
 from ... import models
 
@@ -56,14 +56,61 @@ class GroupViewSet(ReadOnlyModelViewSet):
 
 class UserViewSet(BaseUserViewset):
     def get_serializer_class(self):
-        if self.action == "get_referral":
+        if self.action == "refferal":
             return serializers.ReferralSerializer
+        elif self.action == "refferal_codes" and self.request.method == "GET":
+            return serializers.ReferralCodeSerializer
+        elif self.action == "refferal_codes" and self.request.method == "POST":
+            return serializers.ReferralCodeCreateSerializer
         return super().get_serializer_class()
 
-    @action(methods=["GET"], detail=True, url_path="referral")
-    def get_refferal(self, *args, **kwargs):
+    def _get_referrer(self, request):
+        code = request.META.get("HTTP_X_REFFERAL_CODE", None)
+        user = models.ReferralCode.get_user_from_code(code)
+        return user
+
+    def _get_referral(self, user, referrer=None):
+        try:
+            referral = models.Referral.objects.get(user=user)
+        except models.Referral.DoesNotExist:
+            referral = models.Referral(parent=referrer, user=user)
+            referral.save()
+        return referral
+
+    @action(methods=["GET"], detail=False, url_path="referral")
+    def refferal(self, request, *args, **kwargs):
         """return user refferal objects"""
-        user = self.request.user
-        referral = get_object_or_404(models.Referral, user=user)
-        serializer = self.get_serializer(instance=referral)
+        refferrer = self._get_referrer(request)
+        refferal = self._get_referral(request.user, refferrer)
+        serializer = self.get_serializer(instance=refferal)
         return Response(serializer.data)
+
+    @action(methods=["GET", "POST"], detail=False, url_path="referral-codes")
+    def refferal_codes(self, request, *args, **kwargs):
+        refferrer = self._get_referrer(request)
+        refferal = self._get_referral(request.user, refferrer)
+        if request.method == "GET":
+            referral_codes = refferal.referral_codes.all()
+        elif request.method == "POST":
+            create_serializer = self.get_serializer(data=request.data)
+            create_serializer.is_valid(raise_exception=True)
+            create_serializer.save(referral=refferal)
+            referral_codes = refferal.referral_codes.all()
+        serializer = serializers.ReferralCodeSerializer(
+            instance=referral_codes, many=True
+        )
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(
+        methods=["DELETE"],
+        detail=False,
+        url_path="referral-codes/(?P<referral_code>[^/.]+)",
+    )
+    def remove_refferal_codes(self, request, referral_code, *args, **kwargs):
+        refferrer = self._get_referrer(request)
+        refferal = self._get_referral(request.user, refferrer)
+        referral_codes = refferal.referral_codes.filter(code=referral_code)
+        referral_codes.delete()
+        return Response(
+            {"message": f"{referral_code} deleted!"}, status=status.HTTP_200_OK
+        )

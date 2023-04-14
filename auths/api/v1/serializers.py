@@ -17,7 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TagSerializer(serializers.Serializer):
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = "__all__"
@@ -64,6 +64,12 @@ class UserSerializer(TaggitSerializer, BaseUserSerializer):
             "user_permissions",
             "groups",
         ]
+
+
+class ReferralCodeCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReferralCode
+        fields = ["code"]
 
 
 class ReferralCodeSerializer(serializers.ModelSerializer):
