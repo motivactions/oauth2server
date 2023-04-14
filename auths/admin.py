@@ -35,7 +35,7 @@ class TagAdmin(admin.ModelAdmin):
 class UserAdmin(UserAdminBase):
     fieldsets = (
         (None, {"fields": ("username", "email", "password")}),
-        (_("Name"), {"fields": ("first_name", "last_name", "tags")}),
+        (_("Name"), {"fields": ("avatar", "cover", "first_name", "last_name", "tags")}),
         (
             _("Permissions"),
             {

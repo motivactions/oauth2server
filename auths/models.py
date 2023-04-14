@@ -65,7 +65,7 @@ class Category(MPTTModel):
     image = ThumbnailerImageField(
         null=True,
         blank=True,
-        upload_to="icon_images",
+        upload_to="category_images",
         verbose_name=_("image"),
     )
 
@@ -165,9 +165,28 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that username already exists."),
         },
     )
-    first_name = models.CharField(_("first name"), max_length=150, blank=True)
-    last_name = models.CharField(_("last name"), max_length=150, blank=True)
-
+    first_name = models.CharField(
+        _("first name"),
+        max_length=150,
+        blank=True,
+    )
+    last_name = models.CharField(
+        _("last name"),
+        max_length=150,
+        blank=True,
+    )
+    avatar = ThumbnailerImageField(
+        null=True,
+        blank=True,
+        upload_to="users_avatar",
+        verbose_name=_("avatar"),
+    )
+    cover = ThumbnailerImageField(
+        null=True,
+        blank=True,
+        upload_to="users_cover",
+        verbose_name=_("cover"),
+    )
     tags = TaggableManager(_("tags"), to=Tag, through="TaggedUser", blank=True)
 
     is_staff = models.BooleanField(

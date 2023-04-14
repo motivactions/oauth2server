@@ -55,15 +55,18 @@ class UserCreateSerializer(TaggitSerializer, BaseUserCreateSerializer):
 
 class UserSerializer(TaggitSerializer, BaseUserSerializer):
     tags = TagListSerializerField()
-    groups = GroupSerializer(many=True)
-    user_permissions = PermissionSerializer(many=True)
+    groups = GroupSerializer(many=True, read_only=True)
+    user_permissions = PermissionSerializer(many=True, read_only=True)
 
     class Meta(BaseUserSerializer.Meta):
         fields = list(BaseUserSerializer.Meta.fields) + [
+            "avatar",
+            "cover",
             "tags",
             "user_permissions",
             "groups",
         ]
+        read_only_fields = ["id", "permissions", "groups"]
 
 
 class ReferralCodeCreateSerializer(serializers.ModelSerializer):
