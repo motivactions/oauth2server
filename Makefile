@@ -7,11 +7,11 @@ serve:
 tunnel:
 	python ./scripts/dev_tunnel.py -l 8000 -d oauth2
 
+celery:
+	celery -A server worker -l INFO
+
 celery-beat:
 	celery -A server beat -l INFO  --scheduler django_celery_beat.schedulers:DatabaseScheduler
-
-celery-worker:
-	celery -A server worker -l INFO
 
 rsa-private-key:
 	openssl genrsa -out privatekey.pem 2048

@@ -16,8 +16,8 @@ INSTALLED_APPS = [
     "auths",
     "boards",
     "themes.default",
-    "server.api",
     # REST
+    "server.api",
     "rest_framework",
     "rest_framework_api_key",
     "drf_spectacular",
