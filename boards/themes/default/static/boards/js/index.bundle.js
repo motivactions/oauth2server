@@ -1,0 +1,1 @@
+(self.webpackChunksimplify=self.webpackChunksimplify||[]).push([["index"],{"./source/js/index.js":function(){eval("\n\n//# sourceURL=webpack://simplify/./source/js/index.js?")}},function(s){s.O(0,["shared"],(function(){return e="./source/js/index.js",s(s.s=e);var e}));s.O()}]);

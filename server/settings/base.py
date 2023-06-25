@@ -13,9 +13,9 @@ USE_TLS = env("USE_TLS")
 
 INSTALLED_APPS = [
     # apps
+    # "boards",
+    # "boards.themes.default",
     "auths",
-    "boards",
-    "themes.default",
     # REST
     "server.api",
     "rest_framework",

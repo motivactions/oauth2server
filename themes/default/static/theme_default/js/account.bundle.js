@@ -1,1 +1,0 @@
-(self.webpackChunksimplify=self.webpackChunksimplify||[]).push([["account"],{"./source/js/account.js":function(){eval('console.log("from account page");\n\n//# sourceURL=webpack://simplify/./source/js/account.js?')}},function(c){c.O(0,["shared"],(function(){return s="./source/js/account.js",c(c.s=s);var s}));c.O()}]);
