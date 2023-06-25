@@ -22,7 +22,6 @@ django-phonenumber-field = "*"
 django-mptt = "*"
 django-redis = "*"
 django-cleanup = "*"
-django-storages = "*"
 django-taggit = "*"
 djangorestframework = "*"
 djangorestframework-api-key = "*"
@@ -34,6 +33,7 @@ gunicorn = "*"
 psycopg2 = "*"
 sentry-sdk = "*"
 redis = "*"
+django-storages = {extras = ["google"], version = "*"}
 
 [dev-packages]
 black = {extras = [ "jupyter",]}
@@ -45,6 +45,7 @@ flake8-debugger = "*"
 ipython = "*"
 isort = "*"
 pre-commit = "*"
+jupyter = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.10"

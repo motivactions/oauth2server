@@ -33,7 +33,6 @@ class AccountAdapter(DefaultAccountAdapter):
     def send_confirmation_mail(self, request, emailconfirmation, signup):
         current_site = get_current_site(request)
         activate_url = self.get_email_confirmation_url(request, emailconfirmation)
-        print(activate_url)
         to_email = emailconfirmation.email_address.email
         user = emailconfirmation.email_address.user
         context = {

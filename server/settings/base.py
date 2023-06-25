@@ -1,6 +1,7 @@
 import os
+import sentry_sdk
 from urllib.parse import urlparse
-
+from sentry_sdk.integrations.django import DjangoIntegration
 from .environ import BASE_DIR, PROJECT_DIR, env  # NOQA
 
 PROJECT_NAME = env("PROJECT_NAME")
@@ -317,6 +318,20 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
 ##############################################################################
 # LOGGING
 ##############################################################################
+
+if env("SENTRY_DSN") not in ["", None]:
+    sentry_sdk.init(
+        dsn=env("SENTRY_DSN"),
+        integrations=[DjangoIntegration()],
+        environment=env("SENTRY_ENV"),
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
 
 LOGGING = {
     "version": 1,

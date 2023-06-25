@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+from shutil import which
 from os import system
 
 TUNNEL_SERVER = "dev-tunnel.ovh-6.server.mitija.com"
@@ -38,8 +39,6 @@ if args.remote_port <= 1024 or args.remote_port > 59999:
     print("Remote port must be between 1025 and 59999")
     exit(1)
 
-from shutil import which
-
 if which("ssh") is None:
     print("ssh is not in PATH")
     exit(1)
@@ -48,6 +47,5 @@ if which("cloudflared") is None:
     print("cloudflared is not in PATH")
     exit(1)
 
-system(
-    f'ssh -o StrictHostKeyChecking=no -o ProxyCommand="cloudflared access ssh --hostname {TUNNEL_SERVER}" -R{args.remote_port}:{args.host}:{args.local_port} {TUNNEL_USER}@mplus-dev-tunnel {args.subdomain} {args.remote_port}'
-)
+cmd = f'ssh -o StrictHostKeyChecking=no -o ProxyCommand="cloudflared access ssh --hostname {TUNNEL_SERVER}" -R{args.remote_port}:{args.host}:{args.local_port} {TUNNEL_USER}@mplus-dev-tunnel {args.subdomain} {args.remote_port}'
+system(cmd)

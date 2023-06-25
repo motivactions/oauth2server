@@ -81,17 +81,21 @@ def access_token_generator(request, refresh_token=False):
 
     # Generate access token
     payload = {
-        "sub": request.user.pk,
         "scope": "read write",
         "token": "access_token",
         "token_type": "Bearer",
-        "identity": {
-            "username": request.user.username,
-            "email": request.user.email,
-            "first_name": request.user.first_name,
-            "last_name": request.user.last_name,
-        },
     }
+    if request.user is not None:
+        payload.update({
+            "sub": request.user.pk,
+            "identity": {
+                "username": request.user.username,
+                "email": request.user.email,
+                "first_name": request.user.first_name,
+                "last_name": request.user.last_name,
+                "tags": [t.slug for t in request.user.tags.all()],
+            },
+        })
     access_token_payload = generate_payload("issuer", token_expiration, **payload)
     access_token = encode_jwt(access_token_payload)
 
@@ -115,6 +119,7 @@ def refresh_token_generator(request):
             "email": request.user.email,
             "first_name": request.user.first_name,
             "last_name": request.user.last_name,
+            "tags": [t.slug for t in request.user.tags.all()],
         },
     }
     refresh_token_payload = generate_payload("issuer", token_expiration, **payload)
