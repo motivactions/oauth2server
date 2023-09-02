@@ -1,16 +1,8 @@
-from django.core.exceptions import (
-    ImproperlyConfigured,
-    NON_FIELD_ERRORS as DJ_NON_FIELD_ERRORS,
-)
-from django.core.exceptions import ValidationError as DjangoValidationError
 from django.urls import include, path, re_path
-from rest_framework.exceptions import ValidationError as DRFValidationError
+from django.core.exceptions import ImproperlyConfigured
 from rest_framework.routers import DefaultRouter
-from rest_framework.views import APIView, api_settings
-from rest_framework.views import exception_handler as drf_exception_handler
+from rest_framework.views import APIView
 from server import hooks
-
-DRF_NON_FIELD_ERRORS = api_settings.NON_FIELD_ERRORS_KEY
 
 
 def get_router(hook_name, router=None):
@@ -63,17 +55,3 @@ def get_urls(hook_name):
         url_path, urls_module = hook()
         urlpatterns.append(path(url_path, include(urls_module)))
     return urlpatterns
-
-
-def error_handler(exc, context):
-    # translate django validation error which ...
-    # .. causes HTTP 500 status ==> DRF validation which will cause 400 HTTP status
-    if isinstance(exc, DjangoValidationError):
-        data = exc.message_dict
-        if DJ_NON_FIELD_ERRORS in data:
-            data[DRF_NON_FIELD_ERRORS] = data[DJ_NON_FIELD_ERRORS]
-            del data[DJ_NON_FIELD_ERRORS]
-
-        exc = DRFValidationError(detail=data)
-
-    return drf_exception_handler(exc, context)

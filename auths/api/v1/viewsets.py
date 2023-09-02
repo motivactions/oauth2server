@@ -8,9 +8,13 @@ from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
+from oauth2_provider.contrib.rest_framework.permissions import (
+    IsAuthenticatedOrTokenHasScope,
+    TokenHasReadWriteScope,
+)
 from djoser.views import UserViewSet as BaseUserViewset
 from rest_framework import status
+
 from . import serializers
 from ... import models
 
@@ -20,8 +24,7 @@ User = get_user_model()
 
 
 class TagViewSet(ReadOnlyModelViewSet):
-    authentication_classes = []
-    permission_classes = []
+    required_scopes = ["read", "write"]
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagSerializer
     filter_backends = [SearchFilter]
@@ -29,8 +32,7 @@ class TagViewSet(ReadOnlyModelViewSet):
 
 
 class CategoryViewSet(ReadOnlyModelViewSet):
-    authentication_classes = []
-    permission_classes = []
+    required_scopes = ["read", "write"]
     queryset = models.Category.objects.all()
     serializer_class = serializers.CategorySerializer
     filter_backends = [SearchFilter]
@@ -46,16 +48,26 @@ class ContentTypeViewSet(ReadOnlyModelViewSet):
 
 
 class PermissionViewSet(ReadOnlyModelViewSet):
+    required_scopes = ["read", "write"]
     queryset = Permission.objects.all()
     serializer_class = serializers.PermissionSerializer
 
 
 class GroupViewSet(ReadOnlyModelViewSet):
+    required_scopes = ["read", "write"]
     queryset = Group.objects.all()
     serializer_class = serializers.GroupSerializer
 
 
 class UserViewSet(BaseUserViewset):
+    required_scopes = ["read", "write"]
+
+    def get_permissions(self):
+        if self.action == "create":
+            self.permission_classes = [TokenHasReadWriteScope]
+            self.required_scopes = ["read", "write"]
+        return [permission() for permission in self.permission_classes]
+
     def get_serializer_class(self):
         if self.action == "refferal":
             return serializers.ReferralSerializer
@@ -81,6 +93,17 @@ class UserViewSet(BaseUserViewset):
             referral = models.Referral(parent=referrer, user=user)
             referral.save()
         return referral
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        data = {
+            "message": "Succesfully create your account, please check your email for confirmation message!",
+            "data": serializer.data,
+        }
+        return Response(data, status=status.HTTP_201_CREATED, headers=headers)
 
     @action(methods=["GET"], detail=False, url_path="referral")
     def refferal(self, request, *args, **kwargs):

@@ -14,10 +14,12 @@ from django.utils import timesince, timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from coreplus.utils.slugs import unique_slugify
+from oauth2_provider.models import AbstractApplication
 from easy_thumbnails.fields import ThumbnailerImageField
 from mptt.models import MPTTModel, TreeForeignKey
 from taggit.models import TagBase, ItemBase
 from taggit.managers import TaggableManager
+from server.utils.image import path_and_rename_prefix
 
 from .helpers import get_user_serializer
 from .tasks import send_mail
@@ -25,6 +27,40 @@ from .validators import AlphaNumericValidator
 from .managers import ReferralManager, TagManager
 
 MAX_USER_REFERRAL_CODE = 3
+
+
+def application_logo_upload_to(instance, filename):
+    return path_and_rename_prefix(instance, filename, "auth_application_logo")
+
+
+class Application(AbstractApplication):
+    logo = models.ImageField(
+        upload_to=application_logo_upload_to,
+        null=True,
+        blank=True,
+        verbose_name=_("logo"),
+    )
+    multiple_grant = models.BooleanField(
+        default=False,
+        verbose_name=_("multiple grant"),
+        help_text=_("If true, allow client credential for this application"),
+    )
+
+    def allows_grant_type(self, *grant_types):
+        # Assume, for this example, that self.authorization_grant_type is set to self.GRANT_AUTHORIZATION_CODE
+
+        if self.multiple_grant:
+            print(grant_types)
+            return bool(
+                set(
+                    [
+                        self.authorization_grant_type,
+                        self.GRANT_CLIENT_CREDENTIALS,
+                    ]
+                ).intersection(grant_types)
+            )
+        else:
+            return super().allows_grant_type(*grant_types)
 
 
 class Category(MPTTModel):

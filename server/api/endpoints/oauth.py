@@ -4,11 +4,10 @@ from oauth2_provider import views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_api_key.permissions import HasAPIKey
 
 
 class ProfileAPIView(APIView):
-    permission_classes = [IsAuthenticated, HasAPIKey]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         return Response(

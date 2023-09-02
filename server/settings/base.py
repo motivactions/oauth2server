@@ -11,15 +11,16 @@ SITE_DOMAIN = env("SITE_DOMAIN")
 BASE_URL = env("BASE_URL")
 USE_TLS = env("USE_TLS")
 
+
 INSTALLED_APPS = [
     # apps
-    # "boards",
+    "boards",
     # "boards.themes.default",
+    # "simpel",
     "auths",
     # REST
     "server.api",
     "rest_framework",
-    "rest_framework_api_key",
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "corsheaders",
@@ -217,6 +218,8 @@ DXyX6qHqG/tFrjudILlk/AB81k30sL+6tpSSe2bTVd1c1JIJcGt1UBWfOpffSNT7
 5wIDAQAB
 -----END PUBLIC KEY-----
 """
+
+OAUTH2_PROVIDER_APPLICATION_MODEL = "auths.Application"
 
 OAUTH2_PROVIDER = {
     "ACCESS_TOKEN_GENERATOR": "auths.generators.access_token_generator",

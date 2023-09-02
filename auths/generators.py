@@ -8,30 +8,40 @@ from oauth2_provider.settings import oauth2_settings
 from django.core.exceptions import ImproperlyConfigured
 
 Application = get_application_model()
+TOKEN_EXPIRE_SECONDS = oauth2_settings.REFRESH_TOKEN_EXPIRE_SECONDS
 
 
-def generate_payload(issuer, expires_in, **extra_data):
+def generate_payload(issuer, user=None, token="access_token"):
     """
     :param issuer: identifies the principal that issued the token.
     :type issuer: str
     :param expires_in: number of seconds that the token will be valid.
     :type expires_in: int
-    :param extra_data: extra data to be added to the payload.
-    :type extra_data: dict
     :rtype: dict
     """
     now = datetime.utcnow()
     issued_at = now
-    expiration = now + expires_in
+    expiration = now + timedelta(seconds=TOKEN_EXPIRE_SECONDS)
     payload = {
         "iss": issuer,
         "exp": expiration,
         "iat": issued_at,
+        "token": token,
     }
 
-    if extra_data:
-        payload.update(**extra_data)
-
+    if user is not None and user.is_authenticated:
+        payload.update(
+            {
+                "sub": user.pk,
+                "identity": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                },
+            }
+        )
     return payload
 
 
@@ -77,52 +87,17 @@ def access_token_generator(request, refresh_token=False):
     """
     Create a new access token for the given user and application using JWT.
     """
-    token_expiration = timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS)
-
-    # Generate access token
-    payload = {
-        "scope": "read write",
-        "token": "access_token",
-        "token_type": "Bearer",
-    }
-    if request.user is not None:
-        payload.update({
-            "sub": request.user.pk,
-            "identity": {
-                "username": request.user.username,
-                "email": request.user.email,
-                "first_name": request.user.first_name,
-                "last_name": request.user.last_name,
-                "tags": [t.slug for t in request.user.tags.all()],
-            },
-        })
-    access_token_payload = generate_payload("issuer", token_expiration, **payload)
-    access_token = encode_jwt(access_token_payload)
-
-    return access_token
+    user = request.user
+    token_payload = generate_payload("issuer", user=user, token="access_token")
+    token = encode_jwt(token_payload)
+    return token
 
 
 def refresh_token_generator(request):
     """
     Create a new refresh token for the given user and application using JWT.
     """
-    token_expiration = timedelta(seconds=oauth2_settings.REFRESH_TOKEN_EXPIRE_SECONDS)
-
-    # Generate access token
-    payload = {
-        "sub": request.user.pk,
-        "scope": "read write",
-        "token": "refresh_token",
-        "token_type": "Bearer",
-        "identity": {
-            "username": request.user.username,
-            "email": request.user.email,
-            "first_name": request.user.first_name,
-            "last_name": request.user.last_name,
-            "tags": [t.slug for t in request.user.tags.all()],
-        },
-    }
-    refresh_token_payload = generate_payload("issuer", token_expiration, **payload)
-    refresh_token = encode_jwt(refresh_token_payload)
-
-    return refresh_token
+    user = request.user
+    token_payload = generate_payload("issuer", user=user, token="refresh_token")
+    token = encode_jwt(token_payload)
+    return token
