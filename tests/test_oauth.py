@@ -8,8 +8,8 @@ from urllib.parse import parse_qs, urlencode, urlparse
 
 from django.contrib.auth import get_user_model
 from django.test import LiveServerTestCase
-from oauth2_provider.models import Application
-from rest_framework_api_key.models import APIKey
+from auths.models import Application
+# from rest_framework_api_key.models import APIKey
 from auths.generators import decode_jwt
 
 User = get_user_model()
@@ -27,14 +27,17 @@ code_challenge = base64.urlsafe_b64encode(code_challenge).decode("utf-8").rstrip
 client_id = "ZWqE7FLFMHw3YWCiUoMTrNz6EOqaa64ltqKpu8Lg"
 client_secret = "s1Xe0tJlJUjOM8bDhz7RCkarnO27P71LiRoGYatmBY13D8oXPIv5yBb9gDtFT8bVJIWd6TaNRowZpTZSWQYKvbYFIC6skn9UpdEPBE7TVNFxhLlQ4mCz7maKjFBVDfwN"  # NOQA
 
+print(code_challenge)
+print(code_verifier)
+
 
 class TestCase(LiveServerTestCase):
     def setUp(self) -> None:
         self.previous_level = logger.getEffectiveLevel()
         logger.setLevel(logging.ERROR)
-        api_key_instance, api_key = APIKey.objects.create_key(name="test_api_key")
-        self.api_key_instance = api_key_instance
-        self.api_key = api_key
+        # api_key_instance, api_key = APIKey.objects.create_key(name="test_api_key")
+        # self.api_key_instance = api_key_instance
+        # self.api_key = api_key
         self.user = User.objects.create_user(
             username="demo_user",
             password="demo_password",
@@ -106,7 +109,7 @@ class TestCase(LiveServerTestCase):
         self.assertGreater(expired_in, created_in)
 
         headers = {
-            "HTTP_X_API_KEY": self.api_key,
+            # "HTTP_X_API_KEY": self.api_key,
             "HTTP_AUTHORIZATION": f"Bearer {access_token}",
             "HTTP_CONTENT_TYPE": "application/json",
         }
@@ -134,7 +137,7 @@ class TestCase(LiveServerTestCase):
         new_access_token = resp.json()["access_token"]
 
         headers = {
-            "HTTP_X_API_KEY": self.api_key,
+            # "HTTP_X_API_KEY": self.api_key,
             "HTTP_AUTHORIZATION": f"Bearer {new_access_token}",
             "HTTP_CONTENT_TYPE": "application/json",
         }
@@ -153,13 +156,13 @@ class TestCase(LiveServerTestCase):
         )
         self.assertEqual(resp.status_code, 200)
         headers = {
-            "HTTP_X_API_KEY": self.api_key,
+            # "HTTP_X_API_KEY": self.api_key,
             "HTTP_AUTHORIZATION": f"Bearer {new_access_token}",
             "HTTP_CONTENT_TYPE": "application/json",
         }
         resp = self.client.get("/api/oauth/profile/", **headers)
         self.assertEqual(
             resp.status_code,
-            200,
-            "Calling protected endpoint after revoke token, expected status code is 401, but we have issue with django oauth toolkit",
+            401,
+            "Calling protected endpoint after revoke token, expected status code is 401",
         )
