@@ -77,6 +77,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(PROJECT_DIR, "templates"),
+            # os.path.join(BASE_DIR, "dash", "oauth_dash", "dist"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -250,6 +251,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
+    # os.path.join(BASE_DIR, "dash", "oauth_dash")
 ]
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"

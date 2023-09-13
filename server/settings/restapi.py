@@ -59,12 +59,12 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        # "rest_framework.authentication.BasicAuthentication",
-        # "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": [
-        "oauth2_provider.contrib.rest_framework.permissions.IsAuthenticatedOrTokenHasScope"],
+    # "DEFAULT_PERMISSION_CLASSES": [
+    #     "oauth2_provider.contrib.rest_framework.permissions.IsAuthenticatedOrTokenHasScope"],
     "DEFAULT_RENDERER_CLASSES": DEFAULT_RENDERER_CLASSES,
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",

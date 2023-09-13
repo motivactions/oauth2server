@@ -29,7 +29,7 @@ if settings.DEBUG:
     ]
 
 i18n_patterns_list = [
-    path("", TemplateView.as_view(template_name="index.html"), name="home_page"),
+    # path("", include("dash.urls")),
 ]
 
 # Get registered global i18n urls from hooks
